@@ -5,6 +5,26 @@
 <template>
   <div>
     <h3>Main 화면입니다.</h3>
+    <p>
+      dummy<br>
+      dummy<br>
+      dummy<br>
+      dummy<br>
+      dummy<br>
+      dummy<br>
+      dummy<br>
+      dummy<br>
+      dummy<br>
+      dummy<br>
+      dummy<br>
+      dummy<br>
+      dummy<br>
+      dummy<br>
+      dummy<br>
+      dummy<br>
+      dummy<br>
+    </p>
+    
   </div>
 </template>
 
