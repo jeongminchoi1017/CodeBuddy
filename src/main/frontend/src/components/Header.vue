@@ -31,6 +31,17 @@
           <li class="nav-item">
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Admin Menu (어드민만 접근(보이게) 가능하게 바꿀거임)
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">112</a></li>
+              <li><a class="dropdown-item" href="#">Notice</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">User management</a></li>
+            </ul>
+          </li>
         </ul>
         <div class="float">
           <button class="btn btn-outline-success login" type="button" href="#">로그인</button>
