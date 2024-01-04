@@ -6,6 +6,7 @@ import Main from "../components/Main.vue";
 import Admin from "../components/AdminMain.vue";
 import AdminUserManagement from "../components/AdminUserManagement.vue";
 import Admin112 from "../components/Admin112.vue";
+import calender from "../components/calendar/Calendar.vue"
 //router 인스턴스 생성
 const router = createRouter({
     history:createWebHistory(),
@@ -24,6 +25,9 @@ const router = createRouter({
         },
         {path: "/admin/user",
             components: {default:AdminUserManagement, header:Header, footer:Footer}
+        },
+        {path: "/user/calender",
+            components: {default:calender, header:Header, footer:Footer}
         }
     ]
 });
