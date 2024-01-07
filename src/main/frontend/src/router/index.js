@@ -7,6 +7,7 @@ import Admin from "../components/admin/AdminNotice.vue";
 import AdminUserManagement from "../components/admin/AdminUserManagement.vue";
 import Admin112 from "../components/admin/Admin112.vue";
 import AdminBoard from "../components/admin/AdminBoard.vue";
+import Chat from "../components/Chat.vue";
 //router 인스턴스 생성
 const router = createRouter({
     history:createWebHistory(),
@@ -28,6 +29,9 @@ const router = createRouter({
         },
         {path: "/admin/Board",
             components: {default:AdminBoard, header:Header, footer:Footer}
+        },
+        {path: "/chat",
+            components: {default:Chat, header:Header, footer:Footer}
         }
     ]
 });
