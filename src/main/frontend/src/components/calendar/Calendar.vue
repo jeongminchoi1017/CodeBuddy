@@ -296,6 +296,7 @@ $('#holder').calendar({
 });
   
 </script>
+
 <template>
   <table class="calendar-table table table-condensed table-tight">
     <thead>
@@ -312,15 +313,15 @@ $('#holder').calendar({
               </td>
               <td>
                 <span class="btn-group btn-group-lg">
-                  {{ if (mode !== 'day') { }}
-                    {{ if (mode === 'month') { }}<button class="js-cal-option btn btn-link" data-mode="year">{{: months[month] }}</button>{{ } }}
-                    {{ if (mode ==='week') { }}
-                      <button class="btn btn-link disabled">{{: shortMonths[first.getMonth()] }} {{: first.getDate() }} - {{: shortMonths[last.getMonth()] }} {{: last.getDate() }}</button>
-                    {{ } }}
+                  {{ if (mode !== 'day')  }}
+                    {{ if (mode === 'month')  }}<button class="js-cal-option btn btn-link" data-mode="year">{{: months[month] }}</button>{{  }}
+                    {{ if (mode ==='week')  }}
+                      <button class="btn btn-link disabled">{{ shortMonths[first.getMonth()] }} {{ first.getDate() }} - {{ shortMonths[last.getMonth()] }} {{ last.getDate() }}</button>
+                    {{  }}
                     <button class="js-cal-years btn btn-link">{{: year}}</button> 
-                  {{ } else { }}
+                  {{ else  }}
                     <button class="btn btn-link disabled">{{: date.toDateString() }}</button> 
-                  {{ } }}
+                  {{  }}
                 </span>
               </td>
               <td style="text-align: right">
@@ -337,47 +338,47 @@ $('#holder').calendar({
         </td>
       </tr>
     </thead>
-    {{ if (mode ==='year') {
+    <!--{{ if (mode ==='year') {
       month = 0;
-    }}
+    }-->
     <tbody>
-      {{ for (j = 0; j < 3; j++) { }}
+      {{ for (j = 0 j < 3 j++) }}
       <tr>
-        {{ for (i = 0; i < 4; i++) { }}
+        {{ for (i = 0 i < 4 i++)  }}
         <td class="calendar-month month-{{:month}} js-cal-option" data-date="{{: new Date(year, month, 1).toISOString() }}" data-mode="month">
           {{: months[month] }}
           {{ month++;}}
         </td>
-        {{ } }}
+        {{  }}
       </tr>
-      {{ } }}
+      {{  }}
     </tbody>
-    {{ } }}
-    {{ if (mode ==='month' || mode ==='week') { }}
+    {{  }}
+    {{ if (mode ==='month' || mode ==='week')  }}
     <thead>
       <tr class="c-weeks">
-        {{ for (i = 0; i < 7; i++) { }}
+        {{ for (i = 0 i < 7 i++)  }}
           <th class="c-name">
-            {{: days[i] }}
+            {{ days[i] }}
           </th>
         {{ } }}
       </tr>
     </thead>
     <tbody>
-      {{ for (j = 0; j < 6 && (j < 1 || mode === 'month'); j++) { }}
+      {{ for (j = 0 j < 6 && (j < 1 || mode === 'month') j++)  }}
       <tr>
-        {{ for (i = 0; i < 7; i++) { }}
+        {{ for i = 0 i < 7; i++}}
         {{ if (thedate > last) { dayclass = nextmonthcss; } else if (thedate >= first) { dayclass = thismonthcss; } }}
         <td class="calendar-day {{: dayclass }} {{: thedate.toDateCssClass() }} {{: date.toDateCssClass() === thedate.toDateCssClass() ? 'selected':'' }} {{: daycss[i] }} js-cal-option" data-date="{{: thedate.toISOString() }}">
-          <div class="date">{{: thedate.getDate() }}</div>
-          {{ thedate.setDate(thedate.getDate() + 1);}}
+          <div class="date">{{ thedate.getDate() }}</div>
+          {{ thedate.setDate(thedate.getDate() + 1)}}
         </td>
-        {{ } }}
+        {{  }}
       </tr>
-      {{ } }}
+      {{  }}
     </tbody>
-    {{ } }}
-    {{ if (mode ==='day') { }}
+    {{  }}
+    {{ if (mode ==='day')  }}
     <tbody>
       <tr>
         <td colspan="7">
@@ -385,7 +386,7 @@ $('#holder').calendar({
             <thead>
               <tr>
                 <th> </th>
-                <th style="text-align: center; width: 100%">{{: days[date.getDay()] }}</th>
+                <th style="text-align: center; width: 100%">{{ days[date.getDay()] }}</th>
               </tr>
             </thead>
             <tbody>
@@ -397,16 +398,16 @@ $('#holder').calendar({
                 <th class="timetitle" >Before 6 AM</th>
                 <td class="time-0-0"> </td>
               </tr>
-              {{for (i = 6; i < 22; i++) { }}
+              {{for i = 6; i < 22; i++ }}
               <tr>
-                <th class="timetitle" >{{: i <= 12 ? i : i - 12 }} {{: i < 12 ? "AM" : "PM"}}</th>
+                <th class="timetitle" >{{ i <= 12 ? i : i - 12 }} {{ i < 12 ? "AM" : "PM"}}</th>
                 <td class="time-{{: i}}-0"> </td>
               </tr>
               <tr>
-                <th class="timetitle" >{{: i <= 12 ? i : i - 12 }}:30 {{: i < 12 ? "AM" : "PM"}}</th>
+                <th class="timetitle" >{{ i <= 12 ? i : i - 12 }}:30 {{ i < 12 ? "AM" : "PM"}}</th>
                 <td class="time-{{: i}}-30"> </td>
               </tr>
-              {{ } }}
+              {{  }}
               <tr>
                 <th class="timetitle" >After 10 PM</th>
                 <td class="time-22-0"> </td>

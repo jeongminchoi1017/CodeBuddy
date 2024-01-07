@@ -27,7 +27,7 @@ const router = createRouter({
             components: {default:AdminUserManagement, header:Header, footer:Footer}
         },
         {path: "/user/calender",
-            components: {default:calender, header:Header, footer:Footer}
+            components: {default:Calender, header:Header, footer:Footer}
         }
     ]
 });
