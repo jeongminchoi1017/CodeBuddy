@@ -1,3 +1,4 @@
+
 <script>
 $(function () {
 	$('[data-toggle="calendar"] > .row > .calendar-day > .events > .event').popover({
