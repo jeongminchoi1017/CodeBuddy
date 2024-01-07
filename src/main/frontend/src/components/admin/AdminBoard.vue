@@ -28,7 +28,7 @@
                 max-rows="6"
             ></b-form-textarea>
   
-            <pre class="mt-3 mb-0">{{ text }}</pre>
+<!--            <pre class="mt-3 mb-0">{{ text }}</pre>-->
           </div>
             <b-button variant="outline-primary" style="float: right"> 댓글 등록</b-button>
 <!--            <b-button variant="outline-primary" style="float: right"> 어디 써먹어야 하려나 </b-button>  -->
