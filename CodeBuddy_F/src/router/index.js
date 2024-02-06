@@ -3,7 +3,7 @@ import StudyMain from "../components/study/StudyMain.vue";
 import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
 import Main from "../components/Main.vue";
-import calender from "../components/calendar/Calendar.vue"
+import Calender from "../components/calendar/Calendar.vue"
 import Admin from "../components/admin/AdminNotice.vue";
 import AdminUserManagement from "../components/admin/AdminUserManagement.vue";
 import Admin112 from "../components/admin/Admin112.vue";

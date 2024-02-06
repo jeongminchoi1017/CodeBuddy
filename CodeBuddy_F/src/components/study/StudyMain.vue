@@ -1,18 +1,18 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import studyMainConfig from '../../config/studyMain.js';
+import studyMainConfig from "../../config/studyMain.js";
 
 let map = null;
 
 onMounted(() => {
   if (window.kakao && window.kakao.maps) {
+    console.log("맵 생성~~~")
     initMap();
   } else {
     const script = document.createElement('script');
     /* global kakao */
     script.onload = () => kakao.maps.load(initMap);
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=147b466328f8f6df5d15728cfff9d5bf&libraries=services`;
-    console.log("appkey: " + studyMainConfig.mapKey);
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${studyMainConfig.mapkey}&libraries=services`;
     document.head.appendChild(script);
   }
 });
@@ -23,27 +23,30 @@ const initMap = () => {
         center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
         level: 5 // 지도의 확대 레벨
       };
-
+  console.log("mapContainer")
   var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+  console.log("map")
 
   // 장소 검색 객체를 생성합니다
   var ps = new kakao.maps.services.Places();
 
+  console.log("ps")
   // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
   if (navigator.geolocation) {
-
+    console.log("geolocation 됨")
     // GeoLocation을 이용해서 접속 위치를 얻어옵니다
     navigator.geolocation.getCurrentPosition(function(position) {
-
+      console.log("getCurrentPosition")
       var lat = position.coords.latitude, // 위도
           lon = position.coords.longitude; // 경도
-
+      console.log("lat : "+lat,"lon : "+lon)
       // 키워드로 장소를 검색합니다
       ps.keywordSearch('카페', placesSearchCB);
       // 키워드 검색 완료 시 호출되는 콜백함수 입니다
-      function placesSearchCB (data, status, pagination) {
+      console.log("ps.keywordSearch : "+ps.keywordSearch);
+      /*function placesSearchCB (data, status, pagination) {
         if (status === kakao.maps.services.Status.OK) {
-
+          console.log("status === kakao.maps.services.Status.OK")
           // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
           // LatLngBounds 객체에 좌표를 추가합니다
           var bounds = new kakao.maps.LatLngBounds();
@@ -52,17 +55,18 @@ const initMap = () => {
             displayMarker(data[i]);
             bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
           }
-
+          console.log("for문")
           // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
           map.setBounds(bounds);
+          console.log("setBounds")
         }
-      }
+      }*/
 
       var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-
+      console.log("locPositon")
       // 마커와 인포윈도우를 표시합니다
       displayMarker(locPosition);
-
+      console.log("displayMarker")
     });
 
   } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다

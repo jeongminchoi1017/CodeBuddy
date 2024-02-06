@@ -19,8 +19,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: a1s2d3F$
-    url: jdbc:log4jdbc:mysql://43.200.181.70:3306/Study
-    username: study
+    url: jdbc:log4jdbc:mysql://43.200.181.70:3306/CodeBuddy
+    username: codebuddy
   devtools:
     livereload:
       enabled: true

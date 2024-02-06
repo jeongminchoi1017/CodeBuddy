@@ -1,45 +1,66 @@
 
 <script>
-$(function () {
-	$('[data-toggle="calendar"] > .row > .calendar-day > .events > .event').popover({
-		container: 'body',
-		content: 'Hello World',
-		html: true,
-		placement: 'bottom',
-		template: '<div class="popover calendar-event-popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
-	});
+document.addEventListener('DOMContentLoaded', function () {
+  var events = document.querySelectorAll('[data-toggle="calendar"] > .row > .calendar-day > .events > .event');
 
-	$('[data-toggle="calendar"] > .row > .calendar-day > .events > .event').on('show.bs.popover', function () {
-		var attending = parseInt($(this).find('div.progress>.progress-bar').attr('aria-valuenow')),
-			total = parseInt($(this).find('div.progress>.progress-bar').attr('aria-valuemax')),
-			remaining = total - attending,
-			displayAttending = attending - $(this).find('div.attending').children().length,
-			html = [
-				'<button type="button" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>',
-				'<h4>'+$(this).find('h4').text()+'</h4>',
-				'<div class="desc">'+$(this).find('div.desc').html()+'</div>',
-				'<div class="location">'+$(this).find('div.location').html()+'</div>',
-				'<div class="datetime">'+$(this).find('div.datetime').html()+'</div>',
-				'<div class="space">Attending <span class="pull-right">Available spots</span></div>',
-				'<div class="attending">',
-					$(this).find('div.attending').html(),
-					'<span class="attending-overflow">+'+displayAttending+'</span>', 
-					'<span class="pull-right">'+remaining+'</span>',
-				'</div>',
-				'<a href="#signup" class="btn btn-success" role="button">Sign up</a>'
-			].join('\n');
+  events.forEach(function (event) {
+    event.addEventListener('mouseover', function () {
+      var popoverContent = getPopoverContent(event);
+      showPopover(event, popoverContent);
+    });
 
-		$(this).attr('title', $(this).find('h4').text());
-		$(this).attr('data-content', html);
-	});
+    event.addEventListener('mouseout', function () {
+      hidePopover(event);
+    });
+  });
 
-	$('[data-toggle="calendar"] > .row > .calendar-day > .events > .event').on('shown.bs.popover', function () {
-		var $popup = $(this);
-		$('.popover:last-child').find('.close').on('click', function(event) {
-			$popup.popover('hide');
-		});
-	});
+  function getPopoverContent(event) {
+    var attending = parseInt(event.querySelector('div.progress > .progress-bar').getAttribute('aria-valuenow')),
+        total = parseInt(event.querySelector('div.progress > .progress-bar').getAttribute('aria-valuemax')),
+        remaining = total - attending,
+        displayAttending = attending - event.querySelector('div.attending').children.length,
+        html = [
+          '<button type="button" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>',
+          '<h4>' + event.querySelector('h4').textContent + '</h4>',
+          '<div class="desc">' + event.querySelector('div.desc').innerHTML + '</div>',
+          '<div class="location">' + event.querySelector('div.location').innerHTML + '</div>',
+          '<div class="datetime">' + event.querySelector('div.datetime').innerHTML + '</div>',
+          '<div class="space">Attending <span class="pull-right">Available spots</span></div>',
+          '<div class="attending">',
+          event.querySelector('div.attending').innerHTML,
+          '<span class="attending-overflow">+' + displayAttending + '</span>',
+          '<span class="pull-right">' + remaining + '</span>',
+          '</div>',
+          '<a href="#signup" class="btn btn-success" role="button">Sign up</a>'
+        ].join('\n');
+
+    return html;
+  }
+
+  function showPopover(event, content) {
+    var popover = document.createElement('div');
+    popover.className = 'popover calendar-event-popover';
+    popover.setAttribute('role', 'tooltip');
+    popover.innerHTML = '<div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content">' + content + '</div>';
+
+    event.setAttribute('title', event.querySelector('h4').textContent);
+    event.setAttribute('data-content', content);
+    event.appendChild(popover);
+
+    var closeBtn = popover.querySelector('.close');
+    closeBtn.addEventListener('click', function (event) {
+      hidePopover(event.target.closest('.event'));
+    });
+  }
+
+  function hidePopover(event) {
+    var popover = event.querySelector('.popover');
+    if (popover) {
+      popover.parentNode.removeChild(popover);
+    }
+  }
 });
+
 
 </script>
 
